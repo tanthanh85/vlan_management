@@ -1,4 +1,7 @@
 SW1:
+  address: sbx-nxos-mgmt.cisco.com
+  username: admin
+  password: Admin_1234!
   vlans:
     - id: 10
       name: data
@@ -7,52 +10,52 @@ SW1:
     - id: 30
       name: DMZ
   interfaces:
-    - id: Fa0/1
+    - id: Eth1/1
       vlan: 10
       mode: access
-    - id: Fa0/2
+    - id: Eth1/2
       vlan: 20
       mode: access
-    - id: Fa0/3
+    - id: Eth1/3
       vlan: 30
       mode: access
-    - id: Fa0/4
+    - id: Eth1/4
       vlan: 10
       mode: access
-    - id: Fa0/23
+    - id: Eth1/23
       mode: trunk
       vlan_list: 10,20,30
-    - id: Fa0/24
+    - id: Eth1/24
       mode: trunk
       vlan_list: 10,20,30
 
-SW2:
-  vlans:
-    - id: 10
-      name: data
-      mode: access
-    - id: 20
-      name: voice
-      mode: access
-  interfaces:
-    - id: Fa0/1
-      vlan: 10
-      mode: access
-    - id: Fa0/2
-      vlan: 10
-      mode: access
-    - id: Fa0/3
-      vlan: 10
-      mode: access
-    - id: Fa0/4
-      vlan: 20
-      mode: access
-    - id: Fa0/23
-      mode: trunk
-      vlan_list: 10,20,30
-    - id: Fa0/24
-      mode: trunk
-      vlan_list: 10,20,30
+# SW2:
+#   vlans:
+#     - id: 10
+#       name: data
+#       mode: access
+#     - id: 20
+#       name: voice
+#       mode: access
+#   interfaces:
+#     - id: Fa0/1
+#       vlan: 10
+#       mode: access
+#     - id: Fa0/2
+#       vlan: 10
+#       mode: access
+#     - id: Fa0/3
+#       vlan: 10
+#       mode: access
+#     - id: Fa0/4
+#       vlan: 20
+#       mode: access
+#     - id: Fa0/23
+#       mode: trunk
+#       vlan_list: 10,20,30
+#     - id: Fa0/24
+#       mode: trunk
+#       vlan_list: 10,20,30
 # SW3:
 #   vlans:
 #     - id: 10
