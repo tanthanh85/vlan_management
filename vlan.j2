@@ -1,0 +1,19 @@
+
+{% for vlan in vlans %}
+vlan {{ vlan.id }}
+name {{ vlan.name }}
+{% endfor %}
+
+{%for interface in interfaces%}
+{%if interface.mode == 'access'%}
+interface {{interface.id}}
+switchport access vlan {{ interface.vlan }}
+spanning-tree portfast
+{%endif%}
+{%if interface.mode == 'trunk'%}
+interface {{interface.id}}
+switchport mode trunk
+switchport trunk allowed-vlan {{interface.vlan_list}}
+{%endif%}
+{%endfor%}
+
