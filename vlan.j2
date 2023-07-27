@@ -8,12 +8,12 @@ name {{ vlan.name }}
 {%if interface.mode == 'access'%}
 interface {{interface.id}}
 switchport access vlan {{ interface.vlan }}
-spanning-tree portfast
+spanning-tree port type edge
 {%endif%}
 {%if interface.mode == 'trunk'%}
 interface {{interface.id}}
 switchport mode trunk
-switchport trunk allowed-vlan {{interface.vlan_list}}
+switchport trunk allowed vlan {{interface.vlan_list}}
 {%endif%}
 {%endfor%}
 
