@@ -16,6 +16,9 @@ SW1:
     - id: Fa0/3
       vlan: 30
       mode: access
+    - id: Fa0/4
+      vlan: 10
+      mode: access
     - id: Fa0/23
       mode: trunk
       vlan_list: 10,20,30
