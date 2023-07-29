@@ -1,108 +1,78 @@
 SW1:
-  address: sbx-nxos-mgmt.cisco.com
+  address: 192.168.50.41
   username: admin
-  password: Admin_1234!
+  password: cisco
   vlans:
-    - id: 10
-      name: data
-    - id: 20
-      name: voice
-    - id: 30
+    - id: '10'
+      name: IT
+    - id: '20'
+      name: HR
+    - id: '30'
       name: DMZ
+    - id: '40'
+      name: outside
+    - id: '50'
+      name: intside
+    - id: '60'
+      name: CloudConnect
   interfaces:
     - id: Eth1/1
-      vlan: 10
-      mode: access
+      description: TRUNK Connection to SW2
+      mode: trunk
+      vlan_list: 10,20,30,40,50.60
     - id: Eth1/2
-      vlan: 20
+      vlan: '10'
+      description: Connect to PC1
       mode: access
-    - id: Eth1/3
-      vlan: 30
-      mode: access
-    - id: Eth1/4
-      vlan: 10
-      mode: access
-    - id: Eth1/23
+    - id: vlan10
+      mode: interface_vlan
+      ip: 10.10.10.1/24
+      vrrp_group: 10
+      vrrp_priority: 150
+      vrrp_address: 10.10.10.1
+    - id: vlan20
+      mode: interface_vlan
+      ip: 10.10.20.1/24
+      vrrp_group: 20
+      vrrp_priority: 150
+      vrrp_address: 10.10.20.1
+SW2:
+  address: 192.168.50.42
+  username: admin
+  password: cisco
+  vlans:
+    - id: '10'
+      name: IT
+    - id: '20'
+      name: HR
+    - id: '30'
+      name: DMZ
+    - id: '40'
+      name: outside
+    - id: '50'
+      name: intside
+    - id: '60'
+      name: CloudConnect
+  interfaces:
+    - id: Eth1/1
+      description: TRUNK Connection to SW1
       mode: trunk
-      vlan_list: 10,20,30
-    - id: Eth1/24
-      mode: trunk
-      vlan_list: 10,20,30
+      vlan_list: 10,20,30,40,50.60
+    - id: Eth1/2
+      vlan: '20'
+      description: Connect to PC2
+      mode: access
+    - id: vlan10
+      mode: interface_vlan
+      ip: 10.10.10.2/24
+      vrrp_group: 10
+      vrrp_priority: 100
+      vrrp_address: 10.10.10.1
+    - id: vlan20
+      mode: interface_vlan
+      ip: 10.10.20.2/24
+      vrrp_group: 20
+      vrrp_priority: 10
+      vrrp_address: 10.10.20.1
 
-# SW2:
-#   vlans:
-#     - id: 10
-#       name: data
-#       mode: access
-#     - id: 20
-#       name: voice
-#       mode: access
-#   interfaces:
-#     - id: Fa0/1
-#       vlan: 10
-#       mode: access
-#     - id: Fa0/2
-#       vlan: 10
-#       mode: access
-#     - id: Fa0/3
-#       vlan: 10
-#       mode: access
-#     - id: Fa0/4
-#       vlan: 20
-#       mode: access
-#     - id: Fa0/23
-#       mode: trunk
-#       vlan_list: 10,20,30
-#     - id: Fa0/24
-#       mode: trunk
-#       vlan_list: 10,20,30
-# SW3:
-#   vlans:
-#     - id: 10
-#       name: data
-#     - id: 20
-#       name: voice
-#   interfaces:
-#     - id: Fa0/1
-#       vlan: 10
-#     - id: Fa0/2
-#       vlan: 10
-#     - id: Fa0/3
-#       vlan: 10
-#     - id: Fa0/4
-#       vlan: 20
-# SW4:
-#   vlans:
-#     - id: 10
-#       name: data
-#     - id: 20
-#       name: voice
-#     - id: 40
-#       name: server
-#   interfaces:
-#     - id: Fa0/1
-#       vlan: 10
-#     - id: Fa0/2
-#       vlan: 10
-#     - id: Fa0/3
-#       vlan: 40
-#     - id: Fa0/4
-#       vlan: 40
-# SW5:
-#   vlans:
-#     - id: 10
-#       name: data
-#     - id: 20
-#       name: voice
-#     - id: 50
-#       name: internet
-#   interfaces:
-#     - id: Fa0/1
-#       vlan: 10
-#     - id: Fa0/2
-#       vlan: 10
-#     - id: Fa0/3
-#       vlan: 50
-#     - id: Fa0/4
-#       vlan: 20
 

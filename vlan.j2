@@ -1,19 +1,48 @@
 
+feature interface-vlan
+feature vrrp
+
 {% for vlan in vlans %}
 vlan {{ vlan.id }}
 name {{ vlan.name }}
 {% endfor %}
 
 {%for interface in interfaces%}
-{%if interface.mode == 'access'%}
+{%if interface.mode == 'access' and interface.vlan!=''%}
+default interface {{interface.id}}
 interface {{interface.id}}
+switchport
 switchport access vlan {{ interface.vlan }}
+description {{interface.description}}
 spanning-tree port type edge
+no shutdown
+{%endif%}
+{%if interface.mode == 'access' and interface.vlan==''%}
+default interface {{interface.id}}
+interface {{interface.id}}
+shutdown
 {%endif%}
 {%if interface.mode == 'trunk'%}
+default interface {{interface.id}}
+switchport
 interface {{interface.id}}
+description {{interface.description}}
 switchport mode trunk
 switchport trunk allowed vlan {{interface.vlan_list}}
+no shutdown
 {%endif%}
+{%if interface.mode == 'interface_vlan'%}
+interface {{interface.id}}
+ip add {{interface.ip}}
+vrrp {{interface.vrrp_group}}
+ priority {{interface.vrrp_priority}}
+ address {{interface.vrrp_address}}
+no shutdown
+{%endif%}
+
+{%endfor%}
+
+{%for vlan_id in removed_vlans%}
+no vlan {{vlan_id}}
 {%endfor%}
 

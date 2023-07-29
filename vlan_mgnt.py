@@ -2,6 +2,7 @@ from config_generation import *
 from netmiko import ConnectHandler
 
 
+
 conn_info = {'device_type': 'cisco_nxos',
     'host' : '',
     'username' : '',
@@ -15,7 +16,7 @@ def send_config():
         conn_info['password']=config['password']
         conn = ConnectHandler(**conn_info)
         conn.send_config_from_file(f'{device}'+".txt")
-
+    conn.disconnect()
 if __name__=='__main__':
     generate_configuration_files()
 
